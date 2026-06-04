@@ -1,13 +1,17 @@
 from deck import Deck
 from player import Player
+from dealer import Dealer
 
 d = Deck()
+dealer = Dealer()
 
-player = Player(3000)
+dealer.add_card(d.deal())
+dealer.add_card(d.deal())
 
-player.add_card(d.deal())
-player.add_card(d.deal())
+dealer.show_visible_hand()
 
-player.show_hand()
+dealer.show_visible_hand()
 
-print(player.calculate_score())
+print("---- Reveal ----")
+
+dealer.show_hand()
