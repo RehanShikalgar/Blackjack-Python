@@ -24,3 +24,37 @@ class Game:
         self.dealer.show_visible_hand()
 
         print("Player's Score: ", self.player.calculate_score())
+
+
+    def player_plays(self):
+        player_turn = True
+        while player_turn == True:
+            user_input = input('TYPE "hit" TO HIT TO KEEP TAKING CARDS OR TYPE "stand" TO STOP TAKING CARDS: ').lower()
+            if user_input == 'hit':
+                player_turn = self.player_hit()
+            elif user_input == 'stand':
+                player_turn = self.player_stand()
+            else:
+                print("Wrong Input.")
+
+    def player_hit(self):
+        self.player.add_card(self.deck.deal())
+        print("___________________________________________")
+        print("Your Cards: ")
+        self.player.show_hand()
+        print("_____________________________________")
+        score = self.player.calculate_score()
+        if(score > 21): # Bust Logic..
+            print("You Busted. The Score surpassed 21.")
+            print("Your Score: ", score)
+            return False
+
+        print("Your Score: ", score)
+        return True
+
+    def player_stand(self):
+        print("You Chose to Stand. Your Score is: ", self.player.calculate_score())
+        return False
+
+                
+
