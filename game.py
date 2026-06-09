@@ -56,5 +56,25 @@ class Game:
         print("You Chose to Stand. Your Score is: ", self.player.calculate_score())
         return False
 
-                
+    def dealer_plays(self):
+        dealer_turn = True
+        
+        while dealer_turn:
+            score = self.dealer.calculate_score()
+            if(score < 17):
+                dealer_turn = self.dealer_hit()
+            else:
+                dealer_turn = self.dealer_stand()
+            
+            
 
+    def dealer_hit(self):
+        self.dealer.add_card(self.deck.deal())
+        print("Dealer Cards: ")
+        self.dealer.show_hand()
+        return True
+
+    def dealer_stand(self):
+        print("Dealer turn ends as Dealer score is equal to OR greater than 17.")
+        self.dealer.show_hand()
+        return False
