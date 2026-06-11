@@ -78,3 +78,42 @@ class Game:
         print("Dealer turn ends as Dealer score is equal to OR greater than 17.")
         self.dealer.show_hand()
         return False
+
+    def compare_score(self):
+        dealer_score = self.dealer.calculate_score()
+        player_score = self.player.calculate_score()
+        if dealer_score > 21:
+            return "player"
+
+        elif player_score > 21:   # it's reduntant. still keeping it coz I might call compare_score() before interpreter gives me player bust result.
+            return "dealer"
+
+        elif dealer_score > player_score:
+            return "dealer"
+
+        elif player_score > dealer_score:
+            return "player"
+
+        else:
+            return "tie"
+
+
+    def declare_winner(self, winner):
+        dealer_score = self.dealer.calculate_score()
+        player_score = self.player.calculate_score()
+        if winner == "player":
+            print("You Win..!\n")
+            print("Dealer Score: ")
+            print(dealer_score,"\n")
+            print("Your Score:")
+            print(player_score,"\n")
+        
+        elif winner == "dealer":
+            print("Dealer Wins.\n")
+            print("Dealer Score: ")
+            print(dealer_score, "\n")
+            print("Your Score:")
+            print(player_score,"\n")
+
+        elif winner == "tie":
+            print("It's a tie.")
