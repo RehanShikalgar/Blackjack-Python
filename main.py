@@ -6,6 +6,4 @@ from game import Game
 
 balance = int(input("Enter your starting balance: "))
 game = Game(balance)
-game.initial_deal()
-game.player_plays()
-
+game.game_play()

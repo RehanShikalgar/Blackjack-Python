@@ -70,8 +70,6 @@ class Game:
 
     def dealer_hit(self):
         self.dealer.add_card(self.deck.deal())
-        print("Dealer Cards: ")
-        self.dealer.show_hand()
         return True
 
     def dealer_stand(self):
@@ -117,3 +115,19 @@ class Game:
 
         elif winner == "tie":
             print("It's a tie.")
+
+    def game_play(self):
+        self.player.show_balance()
+        self.initial_deal()
+
+        self.player_plays()
+
+        if self.player.calculate_score() > 21:
+            self.declare_winner("dealer")
+            return
+
+        self.dealer_plays()
+
+        winner = self.compare_score()
+
+        self.declare_winner(winner)

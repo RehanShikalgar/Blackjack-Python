@@ -6,7 +6,9 @@ class Player:
         self.hand = []
         self.balance = balance
         self.current_bet = 0
-        print("Available Balance: ", self.balance)
+      
+    def show_balance(self):
+        print("Available Balance:", self.balance)
         
 
     def add_card(self, card):
