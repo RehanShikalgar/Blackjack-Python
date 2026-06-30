@@ -53,6 +53,10 @@ class Player:
         self.current_bet=amount
             
         
-        self.balance = self.balance - self.current_bet 
+        # self.balance = self.balance - self.current_bet 
         print("Your bet amount: ", self.current_bet)
-        print("Current Balance: ", self.balance)
+        print("Bet Accepted..!")
+
+    
+    def clear_hand(self):
+        self.hand.clear()

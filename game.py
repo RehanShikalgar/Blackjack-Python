@@ -116,18 +116,61 @@ class Game:
         elif winner == "tie":
             print("It's a tie.")
 
+    def update_balance(self, winner):
+        if winner == 'player':
+            self.player.balance += self.player.current_bet
+        
+        elif winner == 'dealer':
+            self.player.balance -= self.player.current_bet
+
+        else: # I know this doesn;t do anything.. 
+            pass
+
     def game_play(self):
-        self.player.show_balance()
-        self.initial_deal()
+        playing = True
 
-        self.player_plays()
+        while playing:
+            self.player.show_balance()
+            bet = int(input("Enter Bet Amount: \n"))
+            self.player.place_bet(bet)
+            self.initial_deal()
 
-        if self.player.calculate_score() > 21:
-            self.declare_winner("dealer")
-            return
+            self.player_plays()
 
-        self.dealer_plays()
+            if self.player.calculate_score() > 21:
+                self.declare_winner("dealer")
+                self.update_balance("dealer")
+                self.dealer.clear_hand()
+                self.player.clear_hand()
+                self.player.current_bet = 0
+                self.player.show_balance()
+                playing = self.play_again()
+                continue
+            
+            self.dealer_plays()
 
-        winner = self.compare_score()
+            winner = self.compare_score()
 
-        self.declare_winner(winner)
+            self.declare_winner(winner)
+            self.update_balance(winner)
+            self.player.show_balance()
+            self.player.clear_hand()
+            self.dealer.clear_hand()
+            self.player.current_bet = 0
+
+            playing = self.play_again()
+
+    
+    def play_again(self):
+        while True:
+            user_input = input("Do you wish to play further? (y/n): ").lower()
+
+            if user_input == "y":
+                return True
+
+            elif user_input == "n":
+                return False
+
+            else:
+                print("Invalid Input. Try Again")
+
