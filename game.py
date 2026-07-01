@@ -131,8 +131,8 @@ class Game:
 
         while playing:
             self.player.show_balance()
-            bet = int(input("Enter Bet Amount: \n"))
-            self.player.place_bet(bet)
+            # bet = int(input("Enter Bet Amount: \n"))
+            self.player.place_bet()
             self.initial_deal()
 
             self.player_plays()
@@ -169,6 +169,7 @@ class Game:
                 return True
 
             elif user_input == "n":
+                print("Game Ends Here.")
                 return False
 
             else:

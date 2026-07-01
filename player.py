@@ -37,25 +37,28 @@ class Player:
 
 
 
-    def place_bet(self, amount):
-       
-        
-        if amount <MIN_BET:
-            raise ValueError ("Bet amount should be greater than 100.")
+    def place_bet(self):
 
-        elif amount >MAX_BET:
-            raise ValueError ("Bet amount cannot exceed $10,000")
+        while True:
 
-        elif amount > self.balance:
-            print("Current Balance: ", self.balance)
-            raise ValueError ("Amount shouldn't exceed your Current Balance.")
+            amount = int(input("Enter Bet Amount: "))
 
-        self.current_bet=amount
-            
-        
-        # self.balance = self.balance - self.current_bet 
-        print("Your bet amount: ", self.current_bet)
-        print("Bet Accepted..!")
+            if amount < MIN_BET:
+                print(f"Bet amount must be at least {MIN_BET}.")
+                
+
+            elif amount > MAX_BET:
+                print(f"Bet amount cannot exceed {MAX_BET}.")
+               
+
+            elif amount > self.balance:
+                print(f"Your current balance is {self.balance}.")
+               
+            else:
+                self.current_bet = amount
+                print("Your bet amount:", self.current_bet)
+                print("Bet Accepted..!")
+                return
 
     
     def clear_hand(self):
